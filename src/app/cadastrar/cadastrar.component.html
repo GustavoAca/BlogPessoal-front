@@ -10,6 +10,7 @@
           <div class="form-group">
             <label for="nome">Nome</label>
             <input
+            [(ngModel)] = "user.nome"
               type="text"
               class="form-control"
               name="nome"
@@ -20,6 +21,7 @@
             <div class="form-group">
               <label for="usuario">Usuario</label>
               <input
+              [(ngModel)] = "user.usuario"
                 type="text"
                 class="form-control"
                 name="usuario"
@@ -31,6 +33,7 @@
             <div class="form-group">
               <label for="foto">Link da Foto</label>
               <input
+              [(ngModel)] = "user.foto"
                 type="text"
                 class="form-control"
                 name="foto"
@@ -42,6 +45,7 @@
             <div class="form-group">
               <label for="senha">Senha</label>
               <input
+              (input) ="confirmaSenha($event)"
                 type="password"
                 class="form-control"
                 name="senha"
@@ -53,6 +57,7 @@
             <div class="form-group">
               <label for="senha">Confirmar senha</label>
               <input
+              [(ngModel)] = "user.senha"
                 type="password"
                 class="form-control"
                 name="senha"
@@ -63,7 +68,7 @@
 
             <div class="form-group">
               <label for="tipo">Tipo de Usuário</label>
-              <select class="form-control" name="tipo" id="tipo">
+              <select (change)="tipoUser($event)" class="form-control" name="tipo" id="tipo">
                 <option>Selecione um tipo de Usuario</option>
                 <option value="normal">Normal</option>
                 <option value="adm">Administrador</option>
@@ -72,7 +77,7 @@
 
             <div class="d-flex justify-content-center">
               <button type="submit" class="btn btn-danger mr-4" routerLink="/entrar" >Cancelar</button>
-              <button type="submit" class="btn btn-success">Cadastrar</button>
+              <button (click)="cadastrar()" type="submit" class="btn btn-success">Cadastrar</button>
             </div>
           </div>
         </div>
