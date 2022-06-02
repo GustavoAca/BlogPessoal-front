@@ -11,7 +11,7 @@ import { environment } from '../../environments/environment.prod';
 })
 export class EntrarComponent implements OnInit {
 
-  userLogin:UserLogin = new UserLogin()
+  userLogin:UserLogin = new UserLogin;
 
   constructor(
     private authService: AuthService,
