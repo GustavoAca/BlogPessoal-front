@@ -9,7 +9,7 @@
         <img src="{{foto}}" alt="" width="50" height="50" class="img-fluid rounded-circle" alt="Imagem do usuario">
       </li>
       <li class="nav-item pl-3">
-        <p class="m-0 font-weight-bold fs-16 text-white">{{nome}}</p>
+        <p class="m-0 font-weight-bold fs-16 text-white">Olá,{{nome}}</p>
       </li>
 
       <li class="nav-item pl-3">
@@ -22,7 +22,7 @@
 
     <ul class="navbar-nav ml-auto d-flex align-items-center">
       <li class="nav-item pl-3">
-        <a class="m-0 font-weight-bold fs-16 text-white">Sair <i class="fa fa-sign-out" aria-hidden="true"></i>
+        <a (click)="sair()" class="m-0 font-weight-bold fs-16 text-white">Sair <i class="fa fa-sign-out" aria-hidden="true"></i>
         </a>
       </li>
     </ul>
