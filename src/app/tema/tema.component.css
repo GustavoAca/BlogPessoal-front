@@ -1,0 +1,11 @@
+i:hover{
+  background-color: white;
+  color: #6c757d;
+
+}
+
+i {
+  padding: 5px;
+  border-radius: 10px;
+  transition: all .3s;
+}
