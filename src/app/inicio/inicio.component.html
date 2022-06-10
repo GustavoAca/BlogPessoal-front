@@ -39,7 +39,7 @@
     </li>
 
     <li>
-      <a class="nav-item nav-link" id="postagensTema-tab" data-toggle="tab" href="#postagensTema" role="tab"
+      <a (click)="getAllPostagens()" class="nav-item nav-link" id="postagensTema-tab" data-toggle="tab" href="#postagensTema" role="tab"
         aria-controls="postagensTema" aria-selected="false">Postagens por tema</a>
     </li>
   </ul>
@@ -79,25 +79,6 @@
             </small></p>
           </div>
         </div>
-
-        <!-- <div class="card-columns">
-          <div class="card text-center" *ngFor='let items of listaPostagens' style="width: 18rem">
-            <div class="card-body">
-              <h5 class="card-title m-0">{{ items.titulo }}</h5>
-              <small class="text-muted"> Tema: {{ items.tema.descricao }} </small>
-              <p class="card-text mt-3">{{ items.texto }}</p>
-              <p class="card-text">
-                <small class="text-muted">
-                  {{ items.data | date: "dd/MM/yyyy" }} às
-                  {{ items.data | date: "HH:mm" }}
-                </small>
-              </p>
-              <img src="{{ items.usuario.foto }}" width="50" height="50" class="img-fluid rounded-circle" />
-              <p class="card-text">
-                <small class="text-muted"> Por: {{ items.usuario.nome }} </small>
-              </p>
-            </div>
-          </div> -->
 
 
       </div>

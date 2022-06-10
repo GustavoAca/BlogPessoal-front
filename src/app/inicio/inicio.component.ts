@@ -37,6 +37,7 @@ export class InicioComponent implements OnInit {
       // alert('Sua seção expirou, faça o login novamente');
       this.router.navigate(['/entrar']);
     }
+    this.authService.refreshToken();
     this.getAllPostagens();
     this.getAllTemas();
 
@@ -67,11 +68,9 @@ export class InicioComponent implements OnInit {
   }
 
   findByIdUser() {
-    console.log(this.idUser);
     this.authService.getByIdUser(this.idUser).subscribe({
       next: (resp :User) =>{
         this.user = resp;
-        console.log(this.user);
       },
     })
   }
@@ -86,6 +85,7 @@ export class InicioComponent implements OnInit {
     this.postagemService.postPostagem(this.postagem).subscribe({
       next: (resp: Postagem) => {
         this.postagem = resp;
+        console.log(this.postagem)
         alert('Postagem realizada com sucesso!');
         this.postagem = new Postagem();
         this.getAllPostagens();
