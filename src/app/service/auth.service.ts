@@ -11,6 +11,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class AuthService {
+  showAlertDanger: any;
 
   constructor(
     private http: HttpClient

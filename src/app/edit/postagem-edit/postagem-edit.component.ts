@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment.prod';
 import { Tema } from 'src/app/model/Tema';
 import { TemaService } from '../../service/tema.service';
 import { AuthService } from '../../service/auth.service';
+import { ThisReceiver } from '@angular/compiler';
 
 @Component({
   selector: 'app-postagem-edit',
@@ -28,6 +29,7 @@ export class PostagemEditComponent implements OnInit {
     private authService: AuthService) { }
 
   ngOnInit() {
+    window.scroll(0,0)
     if (environment.token == '') {
       this.router.navigate(['/entrar'])
     }
@@ -35,6 +37,7 @@ export class PostagemEditComponent implements OnInit {
     let id = this.route.snapshot.params['id'];
     this.findByIdPostagem(id);
     this.findAllTemas();
+    console.log(environment.token)
 
 
   }
@@ -62,7 +65,14 @@ export class PostagemEditComponent implements OnInit {
   }
 
   atualizar() {
+    this.tema.id = this.idTema
+    this.postagem.tema = this.tema
 
+    this.postagemService.putPostagem(this.postagem).subscribe((resp: Postagem) => {
+      this.postagem = resp
+      alert("Postagem atualizada com sucesso")
+      this.router.navigate(['/inicio'])
+    })
   }
 
 
