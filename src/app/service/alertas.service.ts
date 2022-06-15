@@ -11,9 +11,9 @@ export class AlertasService {
     private bsModelService: BsModalService
   ) { }
 
-  private showAlert(message: string, tipo: string){
+  private showAlert(message: string, type: string){
     const bsModalRef: BsModalRef = this.bsModelService.show(AlertaComponent)
-    bsModalRef.content.type = tipo
+    bsModalRef.content.type = type
     bsModalRef.content.message = message
   }
 

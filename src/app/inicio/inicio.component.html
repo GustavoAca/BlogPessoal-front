@@ -47,7 +47,9 @@
   <div class="tab-content mt-4" id="myTabContent">
     <div class="tab-pane fade show active" id="todasPostagens" role="tabpanel" aria-labelledby="todasPostagens-tab">
       <div class="card-columns">
-        <div class="card text-center" *ngFor='let items of listaPostagens' style="width: 18rem">
+        <div class="card text-center"
+        *ngFor='let items of listaPostagens | orderBy : key : reverse'
+        style="width: 18rem">
           <div class="card-body">
             <h5 class="card-title m-0">{{ items.titulo }}</h5>
             <small class="text-muted"> Tema: {{ items.tema.descricao }} </small>
@@ -70,7 +72,7 @@
     <div class="tab-pane fade" id="minhasPostagens" role="tabpanel" aria-labelledby="minhasPostagens-tab">
 
       <div class="card-columns">
-        <div class="card text-center" *ngFor='let item of user.postagem'>
+        <div class="card text-center" *ngFor='let item of user.postagem | orderBy : key : reverse'>
           <div class="card-body">
             <h5 class="card-title m-0">{{item.titulo}}</h5>
             <p class="card-text mt-3">{{item.texto}}</p>
@@ -90,7 +92,7 @@
 
     <div class="tab-pane fade" id="postagensTema" role="tabpanel" aria-labelledby="postagemTema-tab">
       <div class="tab-pane fade show active" id="todasPostagens" role="tabpanel" aria-labelledby="todasPostagens-tab">
-        <div class="card-columns" *ngFor='let tema of listaTemas'>
+        <div class="card-columns" *ngFor='let tema of listaTemas | orderBy : key : reverse'>
           <div class="card text-center" *ngFor='let items of tema.postagem' style="width: 18rem">
             <div class="card-body">
               <h5 class="card-title m-0">{{ items.titulo }}</h5>
