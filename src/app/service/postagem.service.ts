@@ -8,7 +8,7 @@ import { Postagem } from "../model/Postagem";
   providedIn: "root",
 })
 export class PostagemService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   token = {
     headers: new HttpHeaders().set("Authorization", environment.token),
@@ -21,6 +21,10 @@ export class PostagemService {
     );
 
     // return this.http.get<Postagem[]>('http://localhost:8080/postagem', this.token);
+  }
+
+  getByTituloPostagem(titulo: string): Observable<Postagem[]> {
+    return this.http.get<Postagem[]>(`https://gustablogpessoal.herokuapp.com/postagem/titulo/${titulo}`, this.token)
   }
 
   getByIdPostagem(id: number): Observable<Postagem> {

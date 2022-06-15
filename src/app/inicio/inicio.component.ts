@@ -12,22 +12,23 @@ import { AlertasService } from '../service/alertas.service';
 @Component({
   selector: 'app-inicio',
   templateUrl: './inicio.component.html',
-  styleUrls: ['./inicio.component.css']
+  styleUrls: ['./inicio.component.css'],
 })
 export class InicioComponent implements OnInit {
-
   user: User = new User();
   idUser = environment.id;
 
   tema: Tema = new Tema();
   listaTemas: Tema[];
   idTema: number;
+  nomeTema: string;
 
   postagem: Postagem = new Postagem();
   listaPostagens: Postagem[];
+  tituloPost: string;
 
-  key = 'data'
-  reverse = true
+  key = 'data';
+  reverse = true;
 
   constructor(
     public router: Router,
@@ -35,10 +36,10 @@ export class InicioComponent implements OnInit {
     private temaService: TemaService,
     private authService: AuthService,
     private alertas: AlertasService
-  ) { }
+  ) {}
 
   ngOnInit() {
-    window.scroll(0,0)
+    window.scroll(0, 0);
     if (environment.token == '') {
       // alert('Sua seção expirou, faça o login novamente');
       this.router.navigate(['/entrar']);
@@ -46,7 +47,6 @@ export class InicioComponent implements OnInit {
     this.authService.refreshToken();
     this.getAllPostagens();
     this.getAllTemas();
-
   }
 
   getAllTemas() {
@@ -54,7 +54,7 @@ export class InicioComponent implements OnInit {
       next: (resp: Tema[]) => {
         this.listaTemas = resp;
       },
-    })
+    });
   }
 
   findByIdTema() {
@@ -62,23 +62,48 @@ export class InicioComponent implements OnInit {
       next: (resp: Tema) => {
         this.tema = resp;
       },
-    })
+    });
   }
 
   getAllPostagens() {
     this.postagemService.getAllPostagens().subscribe({
       next: (resp: Postagem[]) => {
         this.listaPostagens = resp;
-      }
-    })
+      },
+    });
   }
 
   findByIdUser() {
     this.authService.getByIdUser(this.idUser).subscribe({
-      next: (resp :User) =>{
+      next: (resp: User) => {
         this.user = resp;
       },
-    })
+    });
+  }
+
+  findByTituloPostagem() {
+    if (this.tituloPost == '') {
+      this.getAllPostagens();
+    } else {
+      this.postagemService
+        .getByTituloPostagem(this.tituloPost)
+        .subscribe((resp: Postagem[]) => {
+          this.listaPostagens = resp;
+        });
+    }
+  }
+
+  findByNomeTema(){
+    if (this.nomeTema == '') {
+      this.getAllTemas();
+    } else {
+      this.temaService
+        .getByNomeTema(this.nomeTema)
+        .subscribe((resp: Tema[]) => {
+          this.listaTemas = resp;
+        });
+    }
+
   }
 
   publicar() {
@@ -91,13 +116,11 @@ export class InicioComponent implements OnInit {
     this.postagemService.postPostagem(this.postagem).subscribe({
       next: (resp: Postagem) => {
         this.postagem = resp;
-        console.log(this.postagem)
+        console.log(this.postagem);
         this.alertas.showAlertSuccess('Postagem realizada com sucesso!');
         this.postagem = new Postagem();
         this.getAllPostagens();
       },
-    })
-
+    });
   }
-
 }
