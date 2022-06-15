@@ -103,7 +103,6 @@ export class InicioComponent implements OnInit {
           this.listaTemas = resp;
         });
     }
-
   }
 
   publicar() {
