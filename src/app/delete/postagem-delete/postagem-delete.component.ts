@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/service/auth.service';
 import { PostagemService } from 'src/app/service/postagem.service';
 import { TemaService } from 'src/app/service/tema.service';
 import { environment } from 'src/environments/environment.prod';
+import { AlertasService } from '../../service/alertas.service';
 
 @Component({
   selector: 'app-postagem-delete',
@@ -20,7 +21,8 @@ idPost: number
   constructor(private router: Router,
     private route: ActivatedRoute,
     private postagemService: PostagemService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    private alerta: AlertasService) { }
 
   ngOnInit() {
     window.scroll(0,0)
@@ -47,7 +49,7 @@ idPost: number
 
   apagar() {
     this.postagemService.deletePostagem(this.idPost).subscribe(() =>{
-      alert("Postagem apagada")
+      this.alerta.showAlertSuccess("Postagem apagada")
       this.router.navigate(['/inicio'])
     })
   }

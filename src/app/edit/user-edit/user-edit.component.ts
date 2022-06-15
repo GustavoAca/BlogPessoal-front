@@ -3,6 +3,7 @@ import { User } from '../../model/User';
 import { AuthService } from '../../service/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { environment } from 'src/environments/environment.prod';
+import { AlertasService } from '../../service/alertas.service';
 
 @Component({
   selector: 'app-user-edit',
@@ -19,6 +20,7 @@ export class UserEditComponent implements OnInit {
     private authService: AuthService,
     private router: Router,
     private route:ActivatedRoute,
+    private alertas: AlertasService
   ) { }
 
   ngOnInit() {
@@ -48,13 +50,15 @@ export class UserEditComponent implements OnInit {
     //operador ternario
     // ex:
     // condição ? verdade : falso
-    this.user.senha != this.confirmarSenha ? alert('Senhas estãO INCORRETAS!') : this.authService
-    .cadastrar(this.user)
+    this.user.senha != this.confirmarSenha ? this.alertas.showAlertDanger('Senhas estãO INCORRETAS!') : this.authService
+    .editar(this.user)
     .subscribe((resp: User) =>{
     this.user = resp;
 
+
+
     this.router.navigate(['/entrar'])
-      alert('Usuário atualizado com sucesso!');
+      this.alertas.showAlertSuccess('Usuário atualizado com sucesso!');
 
     environment.token = '';
     environment.id = 0;

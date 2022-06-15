@@ -3,6 +3,7 @@ import { environment } from '../../../environments/environment.prod';
 import { TemaService } from '../../service/tema.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Tema } from 'src/app/model/Tema';
+import { AlertasService } from '../../service/alertas.service';
 
 @Component({
   selector: 'app-tema-delete',
@@ -17,7 +18,8 @@ export class TemaDeleteComponent implements OnInit {
   constructor(
     private temaService: TemaService,
     private router: Router,
-    private route: ActivatedRoute ) { }
+    private route: ActivatedRoute,
+    private alerta: AlertasService ) { }
 
   ngOnInit(){
     if(environment.token == ''){
@@ -39,7 +41,7 @@ this.router.navigate(['/entrar'])
   apagar(){
     this.temaService.deleteTema(this.idTema).subscribe({
       next:() =>{
-      alert('Apagado  pae')
+      this.alerta.showAlertSuccess('Apagado com sucesso!')
       this.router.navigate(['/tema'])
       },
     })

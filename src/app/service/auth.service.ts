@@ -27,6 +27,10 @@ export class AuthService {
     };
   }
 
+  editar(user:User): Observable<User>{
+    return this.http.put<User>('https://gustablogpessoal.herokuapp.com/usuarios/atualizar', user, this.token)
+  }
+
 
   cadastrar(user: User): Observable<User> {
     return this.http.post<User>("https://gustablogpessoal.herokuapp.com/usuarios/cadastrar", user);

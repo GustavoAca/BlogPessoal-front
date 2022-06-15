@@ -7,6 +7,7 @@ import { TemaService } from '../service/tema.service';
 import { Tema } from '../model/Tema';
 import { User } from '../model/User';
 import { AuthService } from '../service/auth.service';
+import { AlertasService } from '../service/alertas.service';
 
 @Component({
   selector: 'app-inicio',
@@ -29,7 +30,8 @@ export class InicioComponent implements OnInit {
     public router: Router,
     private postagemService: PostagemService,
     private temaService: TemaService,
-    private authService: AuthService
+    private authService: AuthService,
+    private alertas: AlertasService
   ) { }
 
   ngOnInit() {
@@ -87,7 +89,7 @@ export class InicioComponent implements OnInit {
       next: (resp: Postagem) => {
         this.postagem = resp;
         console.log(this.postagem)
-        alert('Postagem realizada com sucesso!');
+        this.alertas.showAlertSuccess('Postagem realizada com sucesso!');
         this.postagem = new Postagem();
         this.getAllPostagens();
       },
