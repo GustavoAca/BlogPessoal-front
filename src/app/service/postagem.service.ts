@@ -30,7 +30,7 @@ export class PostagemService {
   getByIdPostagem(id: number): Observable<Postagem> {
     // return this.http.get<Postagem>(`http://localhost:8080/postagem/${id}`)
     return this.http.get<Postagem>(
-      `https://gustablogpessoal.herokuapp.com/postagem${id}`
+      `https://gustablogpessoal.herokuapp.com/postagem/${id}`,this.token
     );
   }
 
